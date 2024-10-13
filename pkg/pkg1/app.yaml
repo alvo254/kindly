@@ -15,7 +15,7 @@ spec:
     repoURL: https://github.com/alvo254/kindly.git
     targetRevision: HEAD
     # with path set to '.' and cnoe://manifests. we are wanting ArgoCD to sync from the ./manifests directory.
-    path: "."
+    path: "/pkg/pkg1/manifests"
   project: default
   syncPolicy:
     automated:
