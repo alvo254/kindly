@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-app
+  namespace: default
+  labels:
+    app: car-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: car-app   # Fixed selector to match the pod's label
+  template:
+    metadata:
+      labels:
+        app: car-app   # Label for pods to match with the service
+    spec:
+      containers:
+        - name: car-app
+          image: alvin254/car-app:v1.0.0
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app
+spec:
+  type: NodePort
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30000 # The port you will access on the host
+  selector:
+    app: car-app   # Fixed selector to match the pod label
