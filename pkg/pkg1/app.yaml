@@ -1,3 +1,5 @@
+---
+# this is an ordinary ArgoCD application file
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,17 +8,14 @@ metadata:
   labels:
     example: basic
 spec:
-  destination:
-    namespace: frontend
-    server: "https://kubernetes.default.svc"
+  project: default
   source:
-    # cnoe:// indicates we want to sync from a local directory.
-    # values after cnoe:// is treated as a relative path from this file.
     repoURL: https://github.com/alvo254/kindly.git
     targetRevision: HEAD
-    # with path set to '.' and cnoe://manifests. we are wanting ArgoCD to sync from the ./manifests directory.
     path: "pkg/pkg1/manifests"
-  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: frontend
   syncPolicy:
     automated:
       selfHeal: true
