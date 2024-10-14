@@ -1,10 +1,9 @@
----
 # this is an ordinary ArgoCD application file
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: car-app
-  namespace: default
+  namespace: argocd
   labels:
     example: basic
 spec:
