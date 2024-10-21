@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: car-app
+  namespace: default
+  labels:
+    app: car-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: car-app   
+  template:
+    metadata:
+      labels:
+        app: car-app   
+    spec:
+      containers:
+        - name: car-app
+          image: alvin254/car-app:v1.0.0
+          ports:
+            - containerPort: 3000
